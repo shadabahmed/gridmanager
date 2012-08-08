@@ -1,0 +1,26 @@
+# specify profiles in qual/quant section
+# profileName = ftp/db:port:usr:password:sleepTime:priority:minDocLoad:maxDocLoad:maxDocsToCopy:minDocsToWriteBack:maxDocsToWriteBack
+# e.g. default = 3306:DB:SYSAUTO:qwdfvb:10:5:10:2:4:10 -> order must remain same
+#      default3308 = 3308 (rest of the settings used from default)
+#      defaultFTP = 21:FTP (rest of the settings used from default)
+
+[qual]
+default = DB:3306:SYSAUTO:qwdfvb:10:10:5:10:2:4:10 # Do not remove this profile
+defaultftp = FTP:21
+default3308 = DB:3308
+desktop = 
+highendserver = 
+lowendserver = 
+serverftp = FTP:21
+ec2 = 
+ec2ftp = FTP:21
+
+[quant]
+default = DB:3306:SYSAUTO:qwdfvb:10:10:5:10:2:4:10 # Do not remove this profile
+defaultftp = FTP:21
+desktop = 
+highendserver = 
+lowendserver = 
+serverftp = FTP:21
+ec2 = 
+ec2ftp = FTP:21

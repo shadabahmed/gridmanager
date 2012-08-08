@@ -1,0 +1,13 @@
+# usage ip:profile
+# e.g.:
+# 192.168.2.32:desktop 
+# 192.168.3.45   (default profile used)
+# for available profiles see profiles.txt
+
+[qual]
+192.168.1.31:ec2ftp
+
+
+[quant]
+192.168.1.34
+192.168.1.32:ec2ftp

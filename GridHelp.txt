@@ -1,0 +1,45 @@
+qual/quantDocsLimit:
+The maximum number of documents to fetch from processing queue at once.
+If all the nodes are free then all documents fetched will be scheduled on the nodes.
+The documents are set "IN PROGRESS" only after they have been scheduled on any of the nodes.
+
+minDocLoad
+minimum threshold only below which documents will be scheduled
+ideally about double the number of pollers on very fast network ..
+over slower connection should be set higher 
+for e.g. ec2 this should be minimum 100
+for local grid this can be a low figure of 10
+
+sleepTime
+Time each thread sleeps before again polling all the scheduling queues and processing queues.
+actual sleepTime is calculated using the following formula:
+actual sleep time = docsInProcessing * (sleepTime + 1)
+should be close very low for machines like ec2 where document throughput is very close to network speed
+for local machines this can be higher.
+for e.g. 
+EC2 grid has this set to .1
+Local Grid has this set to 1
+
+docsInProcessing:
+Total number of documents scheduled on node - Number of completed documents (with data downloaded) 
+
+maxDocsToCopy
+max number of processing docs data to copy to node at once.
+For e.g. if 200 docs are scheduled on a node and maxDocsToCopy is 20 then
+document data will be copied on node in batches of 20 
+For a local machine this can be set to low for low db load.
+For ec2 nodes this should be very high . 500 or so
+
+maxDocsToWriteBack
+The max batch size for which to copy processed data back on master db.
+Should not be too high for local machines.
+For ec2 this can be half of the qual docs limit.
+
+minDocsToWriteBack
+Minimum batch size of processed documents to copy.
+This is used to prevent frequent writes on master db for very small data size.
+Should be higher for slow latency networks such as ec2.
+Can be low on local slaves.
+As low number will provide data is smaller batches and faster update of status 
+while larger will cause infrequent updates but larger chunks are copied.
+
